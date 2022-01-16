@@ -30,7 +30,7 @@ function App() {
         The Story So Far...
       </h2>
 
-      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin'>
+      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin w-full'>
         {displaySentences}
       </div>
     
@@ -38,7 +38,7 @@ function App() {
         What's next?
       </h2>
 
-      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin'>
+      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin w-full'>
         <form onSubmit={(e) => {
           e.preventDefault();
 
