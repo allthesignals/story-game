@@ -52,7 +52,7 @@ function App () {
   const displaySentences = sentences.join(' ')
 
   return (
-    <div className='App container p-2'>
+    <div className='container mx-auto p-2'>
       {!user && <button onClick={handleSignIn}>Sign In</button>}
       {user && (
         <>
@@ -69,7 +69,7 @@ function App () {
         The Story So Far...
       </h2>
 
-      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin w-full'>
+      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin'>
         {displaySentences}
       </div>
 
@@ -77,7 +77,7 @@ function App () {
         What's next?
       </h2>
 
-      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin w-full'>
+      <div className='p-10 m-10 text-left bg-amber-50 text-gray-800 font-mono text-lg font-thin'>
         <form onSubmit={(e) => {
           e.preventDefault()
 
