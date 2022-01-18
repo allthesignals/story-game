@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { useAuthState } from 'react-firebase-hooks/auth'
+
+import { fetchStories, storiesSelector } from './features/story/storySlice'
 
 import './App.css'
 
@@ -35,6 +38,9 @@ const TEST_SENTENCES = [
 ]
 
 function App () {
+  const dispatch = useDispatch()
+  const stories = useSelector(storiesSelector)
+
   const [sentences, updateSentences] = useState(TEST_SENTENCES)
   const [newSentence, updateUserSentence] = useState('')
   const [user] = useAuthState(auth) // [..., loading, error ] are included with this hook if we ever need them
@@ -48,6 +54,10 @@ function App () {
   const handleSignOut = () => {
     auth.signOut()
   }
+
+  useEffect(() => {
+    dispatch(fetchStories())
+  }, [dispatch])
 
   const displaySentences = sentences.join(' ')
 
@@ -64,6 +74,16 @@ function App () {
       <h1 className='text-2xl'>
         StoryBored
       </h1>
+
+      <div className='font-bold text-lg mb-2'>Stories</div>
+      {
+        stories && stories.map(({ id, title, latestSegment }) => (
+          <div key={id} className='mb-2'>
+            <div className='text-base font-bold'>{title}</div>
+            <div className='text-sm ml-2'>{latestSegment.text}</div>
+          </div>
+        ))
+      }
 
       <h2 className='text-left text-2xl text-gray-500 pt-2'>
         The Story So Far...

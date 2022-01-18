@@ -1,0 +1,49 @@
+{
+  "stories": [
+    {
+      "id": 1,
+      "title": "The Brazen Bean Bamboozlement",
+      "creator": {
+        "displayName": "Chris Whong"
+      },
+      "createdAt": 1642482036,
+      "updatedAt": 1642482044,
+      "tags": [
+        "mystery",
+        "game show"
+      ],
+      "latestSegment": {
+        "id": 1,
+        "author": {
+          "displayName": "Chris Whong"
+        },
+        "createdAt": 1642482036,
+        "updatedAt": 1642482044,
+        "text": "Mr. Smith had always fancied himself a punctual fellow.  This would turn out not to be the cade today, as Cynthia had given him the wrong MapQuest printout. \"Oh well\", he sighed, driving along in his 1998 Volkswagen Passat."
+      }
+    },
+    {
+      "id": 2,
+      "title": "Once Upon a Wednesday",
+      "creator": {
+        "displayName": "Chris Whong"
+      },
+      "createdAt": 1642482531,
+      "updatedAt": 1642482537
+,
+      "tags": [
+        "funny",
+        "comics"
+      ],
+      "latestSegment": {
+        "id": 1,
+        "author": {
+          "displayName": "Chris Whong"
+        },
+        "createdAt": 1642482551,
+        "updatedAt": 1642482554,
+        "text": "Harold never cared much for Chocolate ice cream.  However, today was different...  It was Wednesday, and he was going to do things differently.  Chocolate ice cream with rainbow sprinkles it would be"
+      }
+    }
+  ]
+}
