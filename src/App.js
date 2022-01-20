@@ -1,28 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { initializeApp } from 'firebase/app'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-import { useAuthState } from 'react-firebase-hooks/auth'
-
 import { fetchStories, storiesSelector } from './features/story/storySlice'
-
-import './App.css'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyBzLAt-lV35gwxQ9ThZnw6UANlYd10CYHk',
-  authDomain: 'storybored-3d0ab.firebaseapp.com',
-  projectId: 'storybored-3d0ab',
-  storageBucket: 'storybored-3d0ab.appspot.com',
-  messagingSenderId: '953974228724',
-  appId: '1:953974228724:web:555667776e8f257c53c0a1'
-}
-
-// eslint-disable-next-line
-const theApp = initializeApp(firebaseConfig)
-
-const auth = getAuth()
-
-const provider = new GoogleAuthProvider()
 
 const TEST_SENTENCES = [
   "Don't put peanut butter on the dog's nose.",
@@ -43,17 +21,6 @@ function App () {
 
   const [sentences, updateSentences] = useState(TEST_SENTENCES)
   const [newSentence, updateUserSentence] = useState('')
-  const [user] = useAuthState(auth) // [..., loading, error ] are included with this hook if we ever need them
-
-  // TODO: We have signin and signout here in the root component just to experiment with firebase
-  // we will want to move these somewhere else and probably make them into proper redux actions
-  const handleSignIn = () => {
-    signInWithPopup(auth, provider) // TODO: restore .catch() here
-  }
-
-  const handleSignOut = () => {
-    auth.signOut()
-  }
 
   useEffect(() => {
     dispatch(fetchStories())
@@ -63,14 +30,6 @@ function App () {
 
   return (
     <div className='container mx-auto p-2'>
-      {!user && <button onClick={handleSignIn}>Sign In</button>}
-      {user && (
-        <>
-          <img src={user.photoURL} className='w-8 h-8 mr-2 inline-block' />
-          <div className='mr-2'>{user.displayName}</div>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </>
-      )}
       <h1 className='text-2xl'>
         StoryBored
       </h1>

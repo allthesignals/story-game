@@ -7,9 +7,8 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-
 import './index.css'
-import App from './App'
+import Landing from './routes/landing'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
@@ -17,7 +16,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Provider store={store}>
         <Routes>
-          <Route path='/' element={<App />} />
+          <Route path='/' element={<Landing />} />
         </Routes>
       </Provider>
     </BrowserRouter>
