@@ -1,5 +1,4 @@
 import React from 'react'
-import Auth from '../components/auth'
 
 export default function Landing () {
   return (
@@ -15,8 +14,6 @@ export default function Landing () {
       <h2 className='text-left text-2xl text-gray-500 pt-2'>
         You decide!
       </h2>
-
-      <Auth />
     </div>
   )
 }
