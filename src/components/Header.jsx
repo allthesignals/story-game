@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 import DropDownMenu from './DropDownMenu'
 import Button from './Button'
@@ -39,22 +37,14 @@ const PencilSVG = () => (
 
 )
 
-const provider = new GoogleAuthProvider()
-
-const Header = ({ auth }) => {
-  const [user] = useAuthState(auth) // [..., loading, error ] are included with this hook if we ever need them
-
+const Header = ({ user, onSignOut, onSignIn }) => {
   // user menu dropdown items
   const items = [
     {
       label: 'Sign out',
-      onClick: () => auth.signOut()
+      onClick: onSignOut
     }
   ]
-
-  const handleSignIn = () => {
-    signInWithPopup(auth, provider) // TODO: restore .catch() here
-  }
 
   return (
     <div>
@@ -71,8 +61,7 @@ const Header = ({ auth }) => {
                 </div>
               </a>
               <div className='hidden md:block'>
-                <div className='ml-10 flex items-baseline space-x-4'>
-                </div>
+                <div className='ml-10 flex items-baseline space-x-4' />
               </div>
             </div>
             <div className='block'>
@@ -89,7 +78,7 @@ const Header = ({ auth }) => {
                     }
                     {
                       !user && (
-                        <Button onClick={handleSignIn}>Sign In</Button>
+                        <Button onClick={onSignIn}>Sign In</Button>
                       )
                     }
                   </div>
@@ -129,5 +118,7 @@ const Header = ({ auth }) => {
 export default Header
 
 Header.propTypes = {
-  auth: PropTypes.object
+  user: PropTypes.object,
+  onSignIn: PropTypes.func,
+  onSignOut: PropTypes.func
 }
