@@ -13,7 +13,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 import Header from './components/Header'
 import { store } from './app/store'
-import Dashboard from './routes/dashboard'
+// import Dashboard from './routes/dashboard'
 
 const AuthenticatedRoute = ({ children, loading, user }) => {
   if (loading) {
@@ -92,5 +92,6 @@ AuthenticatedRoute.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  loading: PropTypes.bool
 }
