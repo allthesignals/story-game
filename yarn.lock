@@ -7655,10 +7655,10 @@ react-error-overlay@^6.0.10:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
 
-react-firebase-hooks@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npmjs.org/react-firebase-hooks/-/react-firebase-hooks-4.0.2.tgz"
-  integrity sha512-DwykuPHfnGIHbJYgRxh3sacfdeEyRxlqwBOdwClkA07s9Shi9gqcOWgMzOPbXPbP6o94YDnNW2yP42opgQs7Nw==
+react-firebase-hooks@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-firebase-hooks/-/react-firebase-hooks-5.0.0.tgz#039acec4647a105f3d31940cc7078836246fd7b4"
+  integrity sha512-kfsUCAQTE4vHVaSKFA4WDTo0bC3keLTVccLha3m0CW7MnW2L4U7RCiHc5F8YY5H0X9eRsS86zzzkW1SvGBgwMg==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

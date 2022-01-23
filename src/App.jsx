@@ -13,11 +13,18 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 import Header from './components/Header'
 import { store } from './app/store'
-
 import Dashboard from './routes/dashboard'
 
-const AuthenticatedRoute = ({ children, user }) => {
-  return user ? children : <Navigate to='/login' />
+const AuthenticatedRoute = ({ children, loading, user }) => {
+  if (loading) {
+    return null
+  } else {
+    if (user) {
+      return children
+    } else {
+      return <Navigate to='/login' />
+    }
+  }
 }
 
 const App = () => {
@@ -35,7 +42,7 @@ const App = () => {
 
   const auth = getAuth()
 
-  const [user] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
 
   const handleSignIn = () => {
     signInWithPopup(auth, provider) // TODO: restore .catch() here
@@ -60,8 +67,9 @@ const App = () => {
               element={
                 <AuthenticatedRoute
                   user={user}
+                  loading={loading}
                 >
-                  <Dashboard />
+                  <div>Dashboard!</div>
                 </AuthenticatedRoute>
               }
             />
