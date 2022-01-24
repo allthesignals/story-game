@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   BrowserRouter,
-  Routes,
+  Switch,
   Route,
-  Navigate
+  Redirect
 } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -15,6 +15,7 @@ import Header from './components/Header'
 import { store } from './app/store'
 import Dashboard from './routes/dashboard'
 import Landing from './routes/landing'
+import Story from './routes/stories/story'
 
 const AuthenticatedRoute = ({ children, loading, user }) => {
   if (loading) {
@@ -23,7 +24,7 @@ const AuthenticatedRoute = ({ children, loading, user }) => {
     if (user) {
       return children
     } else {
-      return <Navigate to='/' />
+      return <Redirect to='/' />
     }
   }
 }
@@ -62,14 +63,19 @@ const App = () => {
             onSignIn={handleSignIn}
             onSignOut={handleSignOut}
           />
-          <Routes>
+          <Switch>
             <Route
               path='/'
-              element={
-                (loading ? <div className='container mx-auto'>Loading...</div> : (user ? <Dashboard user={user} /> : <Landing />))
-              }
+            >
+              <div>
+                {(loading ? <div className='container mx-auto'>Loading...</div> : (user ? <Dashboard user={user} /> : <Landing />))}
+              </div>
+            </Route>
+            <Route
+              path='/stories/:id'
+              element={<Story user={user} />}
             />
-          </Routes>
+          </Switch>
         </Provider>
       </BrowserRouter>
     </React.StrictMode>
