@@ -13,7 +13,8 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 import Header from './components/Header'
 import { store } from './app/store'
-// import Dashboard from './routes/dashboard'
+import Dashboard from './routes/dashboard'
+import Landing from './routes/landing'
 
 const AuthenticatedRoute = ({ children, loading, user }) => {
   if (loading) {
@@ -22,7 +23,7 @@ const AuthenticatedRoute = ({ children, loading, user }) => {
     if (user) {
       return children
     } else {
-      return <Navigate to='/login' />
+      return <Navigate to='/' />
     }
   }
 }
@@ -65,17 +66,7 @@ const App = () => {
             <Route
               path='/'
               element={
-                <AuthenticatedRoute
-                  user={user}
-                  loading={loading}
-                >
-                  <div>Dashboard!</div>
-                </AuthenticatedRoute>
-              }
-            />
-            <Route
-              path='/login' element={
-                <div>Login!</div>
+                (loading ? <div className='container mx-auto'>Loading...</div> : (user ? <Dashboard user={user} /> : <Landing />))
               }
             />
           </Routes>
