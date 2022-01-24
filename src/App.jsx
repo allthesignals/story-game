@@ -57,7 +57,9 @@ const App = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <Provider store={store}>
+        <Provider
+          store={store}
+        >
           <Header
             user={user}
             onSignIn={handleSignIn}
@@ -65,16 +67,19 @@ const App = () => {
           />
           <Switch>
             <Route
+              path='/stories/:id'
+            >
+              <Story
+                user={user}
+              />
+            </Route>
+            <Route
               path='/'
             >
               <div>
                 {(loading ? <div className='container mx-auto'>Loading...</div> : (user ? <Dashboard user={user} /> : <Landing />))}
               </div>
             </Route>
-            <Route
-              path='/stories/:id'
-              element={<Story user={user} />}
-            />
           </Switch>
         </Provider>
       </BrowserRouter>
