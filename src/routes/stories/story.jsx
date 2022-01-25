@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   useParams
 } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchStoryById, storiesSelector } from '../../features/story/storySlice'
+import { useQuery } from 'react-query'
 
 export default function Dashboard (props) {
   const { id } = useParams()
+  const { data: story, isLoading } = useQuery('stories', async () => {
+    const response = await fetch(`http://localhost:3001/stories/${id}`)
 
-  const dispatch = useDispatch()
-  const stories = useSelector(storiesSelector)
-  const story = stories.find(story => story.id === +id)
+    return response.json()
+  })
 
-  useEffect(() => {
-    dispatch(fetchStoryById(id))
-  }, [dispatch])
+  if (isLoading) return 'Loading...'
 
   return (
     <main className='container mx-auto'>
