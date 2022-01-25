@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = {
   loading: false,
@@ -21,12 +21,20 @@ export const storySlice = createSlice({
     getStoriesFailure: state => {
       state.loading = false
       state.hasErrors = true
+    },
+    getStoryLoading: state => {
+      state.loading = true
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchStoryById.fulfilled, (state, action) => {
+      state.stories.push(action.payload)
+    })
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { getStories, getStoriesSuccess, getStoriesFailure } = storySlice.actions
+export const { getStories, getStoriesSuccess, getStoriesFailure, getStoryLoading } = storySlice.actions
 
 // A selector
 export const storiesSelector = (state) => {
@@ -51,3 +59,13 @@ export function fetchStories () {
     }
   }
 }
+
+export const fetchStoryById = createAsyncThunk(
+  'stories/fetchById',
+  async (id) => {
+    const response = await fetch(`http://localhost:3001/stories/${id}`)
+    const data = await response.json()
+
+    return data
+  }
+)
