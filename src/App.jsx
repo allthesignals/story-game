@@ -6,13 +6,11 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-
+import { QueryClientProvider, QueryClient } from 'react-query'
 import Header from './components/Header'
-import { store } from './app/store'
 import Dashboard from './routes/dashboard'
 import Landing from './routes/landing'
 import Story from './routes/stories/story'
@@ -30,6 +28,7 @@ const AuthenticatedRoute = ({ children, loading, user }) => {
 }
 
 const App = () => {
+  const queryClient = new QueryClient()
   const provider = new GoogleAuthProvider()
 
   // initialize firebase app
@@ -57,8 +56,8 @@ const App = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <Provider
-          store={store}
+        <QueryClientProvider
+          client={queryClient}
         >
           <Header
             user={user}
@@ -81,7 +80,7 @@ const App = () => {
               </div>
             </Route>
           </Switch>
-        </Provider>
+        </QueryClientProvider>
       </BrowserRouter>
     </React.StrictMode>
   )
