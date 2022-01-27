@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.6.3",
     "mini-css-extract-plugin": "2.5.1",
+    "netlify-lambda": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^4.0.2",
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "netlify-lambda install"
   },
   "browserslist": {
     "production": [
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "dotenv": "^14.3.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.3",
     "eslint-config-standard-jsx": "^10.0.0",
